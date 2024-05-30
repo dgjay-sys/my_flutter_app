@@ -23,6 +23,8 @@ class MyApp extends StatelessWidget {
         '/getstarted': (context) => const GetStarted(),
         '/register': (context) => const RegisterPage(),
         '/login': (context) => const LoginPage(),
+        '/profile': (context) => const SettingProfile(),
+        '/home': (context) => const HomePage(),
       },
     );
   }
