@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/widgets.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -24,17 +22,23 @@ final List<Map<String, String>> locList = [
   {
     'title': 'Paris',
     'subtitle': 'Secondary Text 1',
-    'image': 'assets/bryce-canyon-502026_1920.jpg'
+    'image': 'assets/bryce-canyon-502026_1920.jpg',
+    'perN': '180 /per night',
+    'pen': "test"
   },
   {
     'title': 'America',
     'subtitle': 'Secondary Text 2',
-    'image': 'assets/gateway-arch-67313_1920.jpg'
+    'image': 'assets/gateway-arch-67313_1920.jpg',
+    'perN': '190 /per night',
+    'pen': "test"
   },
   {
     'title': 'Australia',
     'subtitle': 'Secondary Text 2',
-    'image': 'assets/lake-mcdonald-1733307_1920.jpg'
+    'image': 'assets/lake-mcdonald-1733307_1920.jpg',
+    'perN': '200 /per night',
+    'pen': "test"
   },
   // Add more items here
 ];
@@ -43,22 +47,31 @@ final List<Map<String, String>> imageUrls = [
   {
     'image': 'https://random.dog/e82e125b-94c4-4313-852d-6be6ae41da41.jpg',
     'name': 'name 1',
+    'comment': "Lorem ipsum dolor sit amet."
   },
   {
     'image': 'https://random.dog/0ced6461-bfc4-4987-bf41-638f23ce21c2.jpg',
     'name': 'name 2',
+    'comment':
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium pellentesque elit, ac elementum mi.'
   },
   {
     'image': 'https://random.dog/0415ca3e-0e99-4afa-bec6-bd8a4a7ff6ff.PNG',
     'name': 'name 3',
+    'comment':
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium pellentesque elit, ac elementum mi.'
   },
   {
     'image': 'https://random.dog/f434f09a-0d75-443b-a0ed-e13d5b8703c3.jpg',
     'name': 'name 4',
+    'comment':
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium pellentesque elit, ac elementum mi.'
   },
   {
     'image': 'https://random.dog/b3b20013-8bc5-40be-bafc-43fdabc18104.jpg',
     'name': 'name 5',
+    'comment':
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium pellentesque elit, ac elementum mi.'
   },
 ];
 int currentPage = 0;
@@ -83,12 +96,12 @@ class _HomePageState extends State<HomePage> {
                     fontSize: 20.0,
                     fontFamily: 'PoestenOne',
                     color: Colors.black)),
-            const SizedBox(
-              width: 210.0,
-            ),
-            const CircleAvatar(
-              backgroundImage: AssetImage('assets/profile.jpg'),
-              radius: 30.0,
+            Container(
+              margin: const EdgeInsets.only(left: 210.0),
+              child: const CircleAvatar(
+                backgroundImage: AssetImage('assets/profile.jpg'),
+                radius: 20.0,
+              ),
             ),
           ],
         ),
@@ -131,7 +144,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            Container(
+            SizedBox(
               height: 120,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
@@ -238,6 +251,186 @@ class _HomePageState extends State<HomePage> {
                       ),
                     );
                   }),
+            ),
+            Container(
+              alignment: Alignment.topLeft,
+              margin: const EdgeInsets.only(left: 10.0),
+              child: const Text(
+                'Best Deals',
+                style: TextStyle(
+                    fontFamily: 'DMSerifDisplay',
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            SizedBox(
+              height: 160.0,
+              child: ListView.builder(
+                itemCount: locList.length,
+                itemBuilder: (context, index) {
+                  final locItem = locList[index];
+                  return Card(
+                    color: Colors.grey[200],
+                    shadowColor: Colors.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    elevation: 5,
+                    clipBehavior: Clip.antiAlias,
+                    child: Padding(
+                      padding: const EdgeInsets.all(3.0),
+                      child: Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(15.0),
+                            child: Image.asset(
+                              locItem['image'].toString(),
+                              height: 150,
+                              width: 150,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Expanded(
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                Text(
+                                  locItem['title'].toString(),
+                                  style: const TextStyle(
+                                      fontSize: 35,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'DMSerifDisplay'),
+                                ),
+                                Text(
+                                  locItem['subtitle'].toString(),
+                                  style: const TextStyle(
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 25.0,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        const Icon(
+                                          Icons.location_on,
+                                          color: Colors.green,
+                                          size: 20,
+                                        ),
+                                        const SizedBox(width: 5),
+                                        const Text('2 km to city'),
+                                        const SizedBox(
+                                          width: 10.0,
+                                        ),
+                                        Text(
+                                          "\$${locItem['perN'].toString()}",
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  width: 265.0,
+                                  child: ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.pushNamed(
+                                            context, '/viewinfo',
+                                            arguments: locItem);
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.lightBlueAccent,
+                                        shadowColor: Colors.black,
+                                        elevation: 5.0,
+                                      ),
+                                      child: const Text(
+                                        "View",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                        ),
+                                      )),
+                                ),
+                              ]))
+                          // Column(
+                          //   children: [
+                          //     const SizedBox(height: 10),
+                          //     Text(
+                          //       locItem['title'].toString(),
+                          //       style: const TextStyle(
+                          //         fontSize: 20,
+                          //         fontWeight: FontWeight.bold,
+                          //       ),
+                          //     ),
+                          //     Text(
+                          //       locItem['subtitle'].toString(),
+                          //       style: const TextStyle(
+                          //         color: Colors.grey,
+                          //       ),
+                          //     ),
+                          //     Row(
+                          //       mainAxisAlignment:
+                          //           MainAxisAlignment.spaceBetween,
+                          //       children: [
+                          //         Row(
+                          //           children: [
+                          //             const Icon(
+                          //               Icons.location_on,
+                          //               color: Colors.green,
+                          //               size: 20,
+                          //             ),
+                          //             const SizedBox(width: 5),
+                          //             const Text('2 km to city'),
+                          //             const SizedBox(
+                          //               width: 10.0,
+                          //             ),
+                          //             Text(
+                          //               "\$${locItem['perN'].toString()}",
+                          //               style: const TextStyle(
+                          //                 fontSize: 16,
+                          //                 fontWeight: FontWeight.bold,
+                          //               ),
+                          //             ),
+                          //           ],
+                          //         ),
+                          //       ],
+                          //     ),
+                          //     const SizedBox(
+                          //       height: 10.0,
+                          //     ),
+                          //     SizedBox(
+                          //       width: 80.0,
+                          //       child: ElevatedButton(
+                          //           onPressed: () {
+                          //             Navigator.pushNamed(context, '/viewinfo',
+                          //                 arguments: locItem);
+                          //           },
+                          //           style: ElevatedButton.styleFrom(
+                          //             backgroundColor: Colors.lightBlueAccent,
+                          //             shadowColor: Colors.black,
+                          //             elevation: 5.0,
+                          //           ),
+                          //           child: const Text(
+                          //             "View",
+                          //             style: TextStyle(
+                          //               color: Colors.black,
+                          //             ),
+                          //           )),
+                          //     ),
+                          //   ],
+                          // ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
             )
           ],
         ),
@@ -250,7 +443,6 @@ class _HomePageState extends State<HomePage> {
               currentPageIndex = index;
               if (currentPageIndex == 1) {
                 Navigator.pushNamed(context, '/getstarted');
-                print(currentPageIndex);
               } else if (currentPageIndex == 2) {
                 Navigator.pushNamed(context, '/profile');
               } else {
@@ -280,22 +472,19 @@ class _HomePageState extends State<HomePage> {
 }
 
 buildCarouselIndicator() {
-  return Container(
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        for (int i = 0; i < imgList.length; i++)
-          Container(
-            height: i == currentPage ? 18 : 10,
-            width: i == currentPage ? 18 : 10,
-            margin: const EdgeInsets.all(5),
-            decoration: BoxDecoration(
-                color: i == currentPage
-                    ? Colors.lightBlueAccent
-                    : Colors.blueAccent,
-                shape: BoxShape.circle),
-          ),
-      ],
-    ),
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      for (int i = 0; i < imgList.length; i++)
+        Container(
+          height: i == currentPage ? 18 : 10,
+          width: i == currentPage ? 18 : 10,
+          margin: const EdgeInsets.all(5),
+          decoration: BoxDecoration(
+              color:
+                  i == currentPage ? Colors.lightBlueAccent : Colors.blueAccent,
+              shape: BoxShape.circle),
+        ),
+    ],
   );
 }

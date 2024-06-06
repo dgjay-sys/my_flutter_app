@@ -118,7 +118,9 @@ class LoginPage extends StatelessWidget {
                       fontSize: 15.0,
                       fontWeight: FontWeight.bold),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, '/forgot');
+                },
               ),
             ),
             const SizedBox(

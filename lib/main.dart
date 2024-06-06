@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hotel_project/views/components/book_hotel.dart';
+import 'package:hotel_project/views/components/view_hotel.dart';
+import 'package:hotel_project/views/forgot_password.dart';
 import 'package:hotel_project/views/get_started.dart';
 import 'package:hotel_project/views/home_page_view.dart';
 import 'package:hotel_project/views/landing_page_view.dart';
@@ -17,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'hotel reservation',
-      home: const HomePage(),
+      home: const BookHotel(),
       routes: {
         '/landing': (context) => const LandingPage(),
         '/getstarted': (context) => const GetStarted(),
@@ -25,6 +28,8 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const LoginPage(),
         '/profile': (context) => const SettingProfile(),
         '/home': (context) => const HomePage(),
+        '/forgot': (context) => const ForgotPassword(),
+        '/viewinfo': (context) => const ViewHotel(),
       },
     );
   }
