@@ -136,7 +136,9 @@ class _ViewHotelState extends State<ViewHotel> {
                   ),
                   const SizedBox(height: 8.0),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/booknow', arguments: data);
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.teal,
                       padding: const EdgeInsets.symmetric(vertical: 12.0),

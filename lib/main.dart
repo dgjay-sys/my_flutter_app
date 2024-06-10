@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'hotel reservation',
-      home: const BookHotel(),
+      home: const HomePage(),
       routes: {
         '/landing': (context) => const LandingPage(),
         '/getstarted': (context) => const GetStarted(),
@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const HomePage(),
         '/forgot': (context) => const ForgotPassword(),
         '/viewinfo': (context) => const ViewHotel(),
+        '/booknow': (context) => const BookHotel(),
       },
     );
   }

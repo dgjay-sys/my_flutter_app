@@ -23,21 +23,21 @@ final List<Map<String, String>> locList = [
     'title': 'Paris',
     'subtitle': 'Secondary Text 1',
     'image': 'assets/bryce-canyon-502026_1920.jpg',
-    'perN': '180 /per night',
+    'perN': '180 ',
     'pen': "test"
   },
   {
     'title': 'America',
     'subtitle': 'Secondary Text 2',
     'image': 'assets/gateway-arch-67313_1920.jpg',
-    'perN': '190 /per night',
+    'perN': '190',
     'pen': "test"
   },
   {
     'title': 'Australia',
     'subtitle': 'Secondary Text 2',
     'image': 'assets/lake-mcdonald-1733307_1920.jpg',
-    'perN': '200 /per night',
+    'perN': '200',
     'pen': "test"
   },
   // Add more items here
