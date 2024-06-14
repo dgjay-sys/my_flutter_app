@@ -263,175 +263,82 @@ class _HomePageState extends State<HomePage> {
                     fontWeight: FontWeight.bold),
               ),
             ),
-            SizedBox(
-              height: 160.0,
-              child: ListView.builder(
-                itemCount: locList.length,
-                itemBuilder: (context, index) {
-                  final locItem = locList[index];
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: List.generate(locList.length, (index) {
+                  final item = locList[index];
                   return Card(
-                    color: Colors.grey[200],
-                    shadowColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                    elevation: 5,
-                    clipBehavior: Clip.antiAlias,
-                    child: Padding(
-                      padding: const EdgeInsets.all(3.0),
-                      child: Row(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(15.0),
-                            child: Image.asset(
-                              locItem['image'].toString(),
-                              height: 150,
-                              width: 150,
-                              fit: BoxFit.cover,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/viewinfo',
+                            arguments: item);
+                      },  
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(15.0),
+                              child: Image.asset(
+                                item['image'].toString(),
+                                height: 125,
+                                width: 150,
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                          ),
-                          Expanded(
+                            const SizedBox(width: 10),
+                            Expanded(
                               child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                Text(
-                                  locItem['title'].toString(),
-                                  style: const TextStyle(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    item['title'].toString(),
+                                    style: const TextStyle(
                                       fontSize: 35,
                                       fontWeight: FontWeight.bold,
-                                      fontFamily: 'DMSerifDisplay'),
-                                ),
-                                Text(
-                                  locItem['subtitle'].toString(),
-                                  style: const TextStyle(
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 25.0,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        const Icon(
-                                          Icons.location_on,
-                                          color: Colors.green,
-                                          size: 20,
-                                        ),
-                                        const SizedBox(width: 5),
-                                        const Text('2 km to city'),
-                                        const SizedBox(
-                                          width: 10.0,
-                                        ),
-                                        Text(
-                                          "\$${locItem['perN'].toString()}",
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ],
+                                      fontFamily: 'DMSerifDisplay',
                                     ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  width: 265.0,
-                                  child: ElevatedButton(
-                                      onPressed: () {
-                                        Navigator.pushNamed(
-                                            context, '/viewinfo',
-                                            arguments: locItem);
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.lightBlueAccent,
-                                        shadowColor: Colors.black,
-                                        elevation: 5.0,
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Text(
+                                    item['subtitle'].toString(),
+                                    style: const TextStyle(
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.location_on,
+                                        color: Colors.green,
+                                        size: 20,
                                       ),
-                                      child: const Text(
-                                        "View",
-                                        style: TextStyle(
-                                          color: Colors.black,
+                                      const SizedBox(width: 5),
+                                      const Text('2 km to city'),
+                                      const SizedBox(width: 10),
+                                      Text(
+                                        "\$${item['perN'].toString()}",
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
                                         ),
-                                      )),
-                                ),
-                              ]))
-                          // Column(
-                          //   children: [
-                          //     const SizedBox(height: 10),
-                          //     Text(
-                          //       locItem['title'].toString(),
-                          //       style: const TextStyle(
-                          //         fontSize: 20,
-                          //         fontWeight: FontWeight.bold,
-                          //       ),
-                          //     ),
-                          //     Text(
-                          //       locItem['subtitle'].toString(),
-                          //       style: const TextStyle(
-                          //         color: Colors.grey,
-                          //       ),
-                          //     ),
-                          //     Row(
-                          //       mainAxisAlignment:
-                          //           MainAxisAlignment.spaceBetween,
-                          //       children: [
-                          //         Row(
-                          //           children: [
-                          //             const Icon(
-                          //               Icons.location_on,
-                          //               color: Colors.green,
-                          //               size: 20,
-                          //             ),
-                          //             const SizedBox(width: 5),
-                          //             const Text('2 km to city'),
-                          //             const SizedBox(
-                          //               width: 10.0,
-                          //             ),
-                          //             Text(
-                          //               "\$${locItem['perN'].toString()}",
-                          //               style: const TextStyle(
-                          //                 fontSize: 16,
-                          //                 fontWeight: FontWeight.bold,
-                          //               ),
-                          //             ),
-                          //           ],
-                          //         ),
-                          //       ],
-                          //     ),
-                          //     const SizedBox(
-                          //       height: 10.0,
-                          //     ),
-                          //     SizedBox(
-                          //       width: 80.0,
-                          //       child: ElevatedButton(
-                          //           onPressed: () {
-                          //             Navigator.pushNamed(context, '/viewinfo',
-                          //                 arguments: locItem);
-                          //           },
-                          //           style: ElevatedButton.styleFrom(
-                          //             backgroundColor: Colors.lightBlueAccent,
-                          //             shadowColor: Colors.black,
-                          //             elevation: 5.0,
-                          //           ),
-                          //           child: const Text(
-                          //             "View",
-                          //             style: TextStyle(
-                          //               color: Colors.black,
-                          //             ),
-                          //           )),
-                          //     ),
-                          //   ],
-                          // ),
-                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );
-                },
+                }),
               ),
-            )
+            ),
           ],
         ),
       ),

@@ -125,7 +125,7 @@ class _ViewHotelState extends State<ViewHotel> {
                   Row(
                     children: [
                       Text(
-                        '\$ ${data['perN']!}',
+                        '\$ ${data['perN']!} / per night',
                         style: const TextStyle(
                           fontSize: 22.0,
                           fontWeight: FontWeight.bold,

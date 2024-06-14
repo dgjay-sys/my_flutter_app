@@ -174,7 +174,7 @@ class _BookHotelState extends State<BookHotel> {
                 Row(
                   children: [
                     Text(
-                      '\$ ${data['perN']!}',
+                      '\$ ${data['perN']!} / per night',
                       style: const TextStyle(
                         fontSize: 22.0,
                         fontWeight: FontWeight.bold,
@@ -356,15 +356,28 @@ class _BookHotelState extends State<BookHotel> {
                         builder: (context) {
                           return StatefulBuilder(builder: (context, setState) {
                             return AlertDialog(
-                              title: const Text('Travel Date'),
+                              title: const Text(
+                                'Travel Information',
+                                style: TextStyle(
+                                    fontFamily: 'OpenSans',
+                                    fontWeight: FontWeight.bold,
+                                    letterSpacing: 3.0),
+                                textAlign: TextAlign.center,
+                              ),
                               content: SizedBox(
-                                  height: 200,
+                                  height: 310,
                                   width: 300,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      const Text('Room type: Deluxe'),
+                                      const Text(
+                                        'Room type: Deluxe',
+                                        style: TextStyle(
+                                          fontFamily: 'OpenSans',
+                                          fontSize: 18.0,
+                                        ),
+                                      ),
                                       const SizedBox(
                                         height: 10.0,
                                       ),
@@ -373,51 +386,130 @@ class _BookHotelState extends State<BookHotel> {
                                             MainAxisAlignment.center,
                                         children: [
                                           Container(
-                                            width: 75.0,
-                                            height: 75.0,
+                                            width: 80.0,
+                                            height: 100.0,
                                             margin: const EdgeInsets.all(3.0),
                                             padding: const EdgeInsets.all(3.0),
                                             decoration: BoxDecoration(
+                                                color: Colors.grey[50],
                                                 border: Border.all(
-                                                    color: Colors.blueAccent)),
+                                                    color: Colors.teal),
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                                boxShadow: const [
+                                                  BoxShadow(
+                                                    color: Colors.teal,
+                                                    blurRadius: 2,
+                                                    offset: Offset(1,
+                                                        2), // Shadow position
+                                                  ),
+                                                ]),
                                             child: Column(
                                               children: [
-                                                const Text('Room'),
-                                                Text(roomCounter.toString())
+                                                const Icon(
+                                                  Icons.king_bed_outlined,
+                                                  size: 40.0,
+                                                ),
+                                                const Text(
+                                                  'Room',
+                                                  style: TextStyle(
+                                                      fontFamily: 'OpenSans',
+                                                      fontSize: 18.0,
+                                                      letterSpacing: 2.0),
+                                                ),
+                                                Text(
+                                                  roomCounter.toString(),
+                                                  style: const TextStyle(
+                                                      fontFamily: 'OpenSans',
+                                                      fontSize: 15.0,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                )
                                               ],
                                             ),
                                           ),
                                           Container(
-                                            width: 75.0,
-                                            height: 75.0,
+                                            width: 80.0,
+                                            height: 100.0,
                                             margin: const EdgeInsets.all(3.0),
                                             padding: const EdgeInsets.all(3.0),
                                             decoration: BoxDecoration(
+                                                color: Colors.grey[50],
                                                 border: Border.all(
-                                                    color: Colors.blueAccent)),
+                                                    color: Colors.teal),
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                                boxShadow: const [
+                                                  BoxShadow(
+                                                    color: Colors.teal,
+                                                    blurRadius: 2,
+                                                    offset: Offset(1,
+                                                        2), // Shadow position
+                                                  ),
+                                                ]),
                                             child: Column(
                                               children: [
-                                                const Text('Adult'),
-                                                Text(adultCounter.toString())
+                                                const Icon(
+                                                  Icons.face,
+                                                  size: 40,
+                                                ),
+                                                const Text('Adult',
+                                                    style: TextStyle(
+                                                        fontFamily: 'OpenSans',
+                                                        fontSize: 18.0,
+                                                        letterSpacing: 2.0)),
+                                                Text(adultCounter.toString(),
+                                                    style: const TextStyle(
+                                                        fontFamily: 'OpenSans',
+                                                        fontSize: 15.0,
+                                                        fontWeight:
+                                                            FontWeight.bold))
                                               ],
                                             ),
                                           ),
                                           Container(
-                                            width: 75.0,
-                                            height: 75.0,
+                                            width: 100.0,
+                                            height: 100.0,
                                             margin: const EdgeInsets.all(3.0),
                                             padding: const EdgeInsets.all(3.0),
                                             decoration: BoxDecoration(
+                                                color: Colors.grey[50],
                                                 border: Border.all(
-                                                    color: Colors.blueAccent)),
+                                                    color: Colors.teal),
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                                boxShadow: const [
+                                                  BoxShadow(
+                                                    color: Colors.teal,
+                                                    blurRadius: 2,
+                                                    offset: Offset(1,
+                                                        2), // Shadow position
+                                                  ),
+                                                ]),
                                             child: Column(
                                               children: [
-                                                const Text('Children'),
-                                                Text(childrenCounter.toString())
+                                                const Icon(
+                                                  Icons.child_care,
+                                                  size: 40.0,
+                                                ),
+                                                const Text('Children',
+                                                    style: TextStyle(
+                                                        fontFamily: 'OpenSans',
+                                                        fontSize: 18.0,
+                                                        letterSpacing: 2.0)),
+                                                Text(childrenCounter.toString(),
+                                                    style: const TextStyle(
+                                                        fontFamily: 'OpenSans',
+                                                        fontSize: 15.0,
+                                                        fontWeight:
+                                                            FontWeight.bold))
                                               ],
                                             ),
                                           )
                                         ],
+                                      ),
+                                      const SizedBox(
+                                        height: 20.0,
                                       ),
                                       Row(
                                         mainAxisAlignment:
@@ -425,58 +517,143 @@ class _BookHotelState extends State<BookHotel> {
                                         children: [
                                           Container(
                                             width: 100.0,
-                                            height: 50.0,
+                                            height: 100.0,
                                             margin: const EdgeInsets.all(3.0),
                                             padding: const EdgeInsets.all(3.0),
                                             decoration: BoxDecoration(
+                                                color: Colors.grey[50],
                                                 border: Border.all(
-                                                    color: Colors.blueAccent)),
+                                                    color: Colors.teal),
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                                boxShadow: const [
+                                                  BoxShadow(
+                                                    color: Colors.teal,
+                                                    blurRadius: 2,
+                                                    offset: Offset(1,
+                                                        2), // Shadow position
+                                                  ),
+                                                ]),
                                             child: Column(
                                               children: [
-                                                const Text('Date Depart'),
-                                                Text(selectedDate
-                                                    .toLocal()
-                                                    .toString()
-                                                    .split(' ')[0])
+                                                const Icon(
+                                                  Icons.departure_board,
+                                                  size: 40.0,
+                                                ),
+                                                const Text(
+                                                  'Depart',
+                                                  style: TextStyle(
+                                                      fontFamily: 'OpenSans',
+                                                      fontSize: 18.0,
+                                                      letterSpacing: 2.0),
+                                                ),
+                                                Text(
+                                                    selectedDate
+                                                        .toLocal()
+                                                        .toString()
+                                                        .split(' ')[0],
+                                                    style: const TextStyle(
+                                                        fontFamily: 'OpenSans',
+                                                        fontSize: 15.0,
+                                                        fontWeight:
+                                                            FontWeight.bold))
                                               ],
                                             ),
                                           ),
                                           Container(
                                             width: 100.0,
-                                            height: 50.0,
+                                            height: 100.0,
                                             margin: const EdgeInsets.all(3.0),
                                             padding: const EdgeInsets.all(3.0),
                                             decoration: BoxDecoration(
+                                                color: Colors.grey[50],
                                                 border: Border.all(
-                                                    color: Colors.blueAccent)),
+                                                    color: Colors.teal),
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                                boxShadow: const [
+                                                  BoxShadow(
+                                                    color: Colors.teal,
+                                                    blurRadius: 2,
+                                                    offset: Offset(1,
+                                                        2), // Shadow position
+                                                  ),
+                                                ]),
                                             child: Column(
                                               children: [
-                                                const Text('Date Return'),
-                                                Text(selectedDateEnd
-                                                    .toLocal()
-                                                    .toString()
-                                                    .split(' ')[0])
+                                                const Icon(
+                                                  Icons.arrow_back_ios_new,
+                                                  size: 40.0,
+                                                ),
+                                                const Text(
+                                                  'Return',
+                                                  style: TextStyle(
+                                                      fontFamily: 'OpenSans',
+                                                      fontSize: 18.0,
+                                                      letterSpacing: 2.0),
+                                                ),
+                                                Text(
+                                                    selectedDateEnd
+                                                        .toLocal()
+                                                        .toString()
+                                                        .split(' ')[0],
+                                                    style: const TextStyle(
+                                                        fontFamily: 'OpenSans',
+                                                        fontSize: 15.0,
+                                                        fontWeight:
+                                                            FontWeight.bold))
                                               ],
                                             ),
                                           ),
                                           Container(
-                                            width: 50.0,
-                                            height: 50.0,
+                                            width: 60.0,
+                                            height: 100.0,
                                             margin: const EdgeInsets.all(3.0),
                                             padding: const EdgeInsets.all(3.0),
                                             decoration: BoxDecoration(
+                                                color: Colors.grey[50],
                                                 border: Border.all(
-                                                    color: Colors.blueAccent)),
+                                                    color: Colors.teal),
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                                boxShadow: const [
+                                                  BoxShadow(
+                                                    color: Colors.teal,
+                                                    blurRadius: 2,
+                                                    offset: Offset(1,
+                                                        2), // Shadow position
+                                                  ),
+                                                ]),
                                             child: Column(
                                               children: [
-                                                const Text('Day/s'),
-                                                Text(days.toString()),
+                                                const Icon(Icons.calendar_today,
+                                                    size: 40.0),
+                                                const Text('Days',
+                                                    style: TextStyle(
+                                                        fontFamily: 'OpenSans',
+                                                        fontSize: 18.0,
+                                                        letterSpacing: 2.0)),
+                                                Text(days.toString(),
+                                                    style: const TextStyle(
+                                                        fontFamily: 'OpenSans',
+                                                        fontSize: 15.0,
+                                                        fontWeight:
+                                                            FontWeight.bold)),
                                               ],
                                             ),
                                           )
                                         ],
                                       ),
-                                      Text('Total = $totalPayment')
+                                      const SizedBox(
+                                        height: 15.0,
+                                      ),
+                                      Center(
+                                        child: Text('Total = \$$totalPayment',
+                                            style: const TextStyle(
+                                                fontFamily: 'OpenSans',
+                                                fontSize: 18.0,
+                                                letterSpacing: 2.0)),
+                                      )
                                     ],
                                   )),
                               actions: [

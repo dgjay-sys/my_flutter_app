@@ -8,6 +8,7 @@ import 'package:hotel_project/views/landing_page_view.dart';
 import 'package:hotel_project/views/login_page_view.dart';
 import 'package:hotel_project/views/register_page_view.dart';
 import 'package:hotel_project/views/setting_profile.dart';
+import 'package:hotel_project/views/typeof_room.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'hotel reservation',
-      home: const HomePage(),
+      home: const TypeOfRoom(),
       routes: {
         '/landing': (context) => const LandingPage(),
         '/getstarted': (context) => const GetStarted(),
