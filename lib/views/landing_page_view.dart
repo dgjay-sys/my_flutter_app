@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -46,7 +47,6 @@ class LandingPage extends StatelessWidget {
             const SizedBox(
               height: 260.0,
             ),
-
             SizedBox(
                 height: 50.0,
                 width: 375.0,
@@ -54,7 +54,7 @@ class LandingPage extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.lightBlueAccent),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/getstarted');
+                      Get.offNamed('/started');
                     },
                     child: const Text(
                       'Get Started',

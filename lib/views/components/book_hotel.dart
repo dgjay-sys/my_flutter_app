@@ -142,7 +142,7 @@ class _BookHotelState extends State<BookHotel> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  data['title']!,
+                  data['nHotel']!,
                   style: const TextStyle(
                     fontSize: 22.0,
                     fontWeight: FontWeight.bold,
@@ -154,7 +154,7 @@ class _BookHotelState extends State<BookHotel> {
                     const Icon(Icons.location_on, color: Colors.green),
                     const SizedBox(width: 4.0),
                     Text(
-                      data['subtitle']!,
+                      data['subTitle']!,
                       style: TextStyle(
                         fontSize: 16.0,
                         color: Colors.grey[700],
@@ -174,7 +174,7 @@ class _BookHotelState extends State<BookHotel> {
                 Row(
                   children: [
                     Text(
-                      '\$ ${data['perN']!} / per night',
+                      '\$ ${data['price']!} / per night',
                       style: const TextStyle(
                         fontSize: 22.0,
                         fontWeight: FontWeight.bold,
@@ -349,8 +349,8 @@ class _BookHotelState extends State<BookHotel> {
                 ElevatedButton(
                   onPressed: () async {
                     days = daysBetween(selectedDate, selectedDateEnd);
-                    totalPayment =
-                        getTotalBook(int.parse(data['perN']!.toString()), days);
+                    totalPayment = getTotalBook(
+                        int.parse(data['price']!.toString()), days);
                     await showDialog(
                         context: context,
                         builder: (context) {
@@ -371,9 +371,9 @@ class _BookHotelState extends State<BookHotel> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      const Text(
-                                        'Room type: Deluxe',
-                                        style: TextStyle(
+                                      Text(
+                                        'Room type: ${data['roomtype']!}',
+                                        style: const TextStyle(
                                           fontFamily: 'OpenSans',
                                           fontSize: 18.0,
                                         ),

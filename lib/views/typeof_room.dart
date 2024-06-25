@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class TypeOfRoom extends StatefulWidget {
   const TypeOfRoom({super.key});
@@ -14,21 +12,21 @@ class _TypeOfRoomState extends State<TypeOfRoom> {
     {
       'title': 'Deluxe Room',
       'subtitle': 'Secondary Text 1',
-      'image': 'assets/bryce-canyon-502026_1920.jpg',
+      'image': 'assets/delux.jpg',
       'perN': '180 ',
       'pen': "test"
     },
     {
       'title': 'Premium Room',
       'subtitle': 'Secondary Text 2',
-      'image': 'assets/gateway-arch-67313_1920.jpg',
+      'image': 'assets/premium.jpg',
       'perN': '190',
       'pen': "test"
     },
     {
-      'title': 'Australia',
+      'title': 'Standard Room',
       'subtitle': 'Secondary Text 2',
-      'image': 'assets/lake-mcdonald-1733307_1920.jpg',
+      'image': 'assets/standard.jpg',
       'perN': '200',
       'pen': "test"
     },
@@ -36,20 +34,25 @@ class _TypeOfRoomState extends State<TypeOfRoom> {
   ];
   @override
   Widget build(BuildContext context) {
+    final Map<String, String>? data =
+        ModalRoute.of(context)!.settings.arguments as Map<String, String>?;
+
+    if (data == null) {
+      return const Scaffold(
+        body: Center(
+          child: Text('No data available'),
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Row(
           children: [
             Expanded(
-                flex: 0,
-                child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.arrow_back),
-                )),
-            const Expanded(
-              flex: 2,
+              flex: 1,
               child: Text(
-                'Title of Room',
+                data['title']!,
                 textAlign: TextAlign.center,
               ),
             ),
@@ -91,68 +94,93 @@ class _TypeOfRoomState extends State<TypeOfRoom> {
                             children: [
                               Expanded(
                                 flex: 3,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      item['title'].toString(),
-                                      style: const TextStyle(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'DMSerifDisplay',
+                                child: Container(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        item['title'].toString(),
+                                        style: const TextStyle(
+                                          fontSize: 25,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'DMSerifDisplay',
+                                        ),
                                       ),
-                                    ),
-                                    const SizedBox(height: 5),
-                                    Text(
-                                      "\$ ${item['perN'].toString()} / per night",
-                                      style: const TextStyle(
-                                        //color: Colors.grey,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
+                                      const SizedBox(height: 5),
+                                      Text(
+                                        "\$ ${item['perN'].toString()} / per night",
+                                        style: const TextStyle(
+                                          //color: Colors.grey,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                    ),
-                                    const SizedBox(height: 5),
-                                    const Text(
-                                      "Sleeps, 3 people",
-                                      style: TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 13.0,
+                                      const SizedBox(height: 5),
+                                      const Text(
+                                        "Sleeps, 3 people",
+                                        style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 13.0,
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                               Expanded(
                                 flex: 3,
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                      width: 115,
-                                      height: 50,
-                                      child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                              shadowColor: Colors.blue,
-                                              elevation: 5.0,
-                                              backgroundColor:
-                                                  Colors.lightBlueAccent),
-                                          onPressed: () {},
-                                          child: const Text(
-                                            'Book Now',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          )),
-                                    ),
-                                    const SizedBox(height: 17),
-                                    InkWell(
-                                        onTap: () {},
-                                        child: const Text(
-                                          'Room Detail',
-                                          style: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 13.0,
-                                          ),
-                                        ))
-                                  ],
+                                child: Container(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        width: 125,
+                                        height: 40,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                shadowColor: Colors.blue,
+                                                elevation: 5.0,
+                                                backgroundColor:
+                                                    Colors.lightBlueAccent),
+                                            onPressed: () {
+                                              Navigator.pushNamed(
+                                                context,
+                                                '/booknow',
+                                                arguments: {
+                                                  'image': data['image']!,
+                                                  'roomtype':
+                                                      item['title'].toString(),
+                                                  'price':
+                                                      item['perN'].toString(),
+                                                  'nHotel': data['title']!,
+                                                  'subTitle': data['subtitle']!,
+                                                },
+                                              );
+                                            },
+                                            child: const Text(
+                                              'Book Now',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 15.0),
+                                            )),
+                                      ),
+                                      const SizedBox(height: 17),
+                                      Container(
+                                        padding: const EdgeInsets.all(5.0),
+                                        child: InkWell(
+                                            onTap: () {},
+                                            child: const Text(
+                                              'Room Detail',
+                                              style: TextStyle(
+                                                color: Colors.grey,
+                                                fontSize: 13.0,
+                                              ),
+                                            )),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],

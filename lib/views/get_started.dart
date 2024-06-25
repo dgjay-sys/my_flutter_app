@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class GetStarted extends StatefulWidget {
   const GetStarted({super.key});
@@ -91,7 +92,7 @@ class _GetStartedState extends State<GetStarted> {
                       elevation: 5.0,
                       backgroundColor: Colors.lightBlueAccent),
                   onPressed: () {
-                    Navigator.pushNamed(context, '/login');
+                    Get.toNamed('/login');
                   },
                   child: const Text(
                     'Log In',
@@ -114,7 +115,7 @@ class _GetStartedState extends State<GetStarted> {
                       elevation: 5.0,
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/register');
+                      Get.toNamed('/register');
                     },
                     child: const Text('Create Account',
                         style: TextStyle(

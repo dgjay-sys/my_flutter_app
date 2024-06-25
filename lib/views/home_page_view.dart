@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import '../services/stored_data.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -109,6 +110,7 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            Text(dataStored.read('token').toString()),
             const SizedBox(
               height: 10.0,
             ),
@@ -273,7 +275,7 @@ class _HomePageState extends State<HomePage> {
                       onTap: () {
                         Navigator.pushNamed(context, '/viewinfo',
                             arguments: item);
-                      },  
+                      },
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(

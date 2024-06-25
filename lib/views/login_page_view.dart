@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+//import 'package:get/state_manager.dart';
+import 'package:hotel_project/controllers/auth_controller.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    AuthController login_controller = Get.put(AuthController());
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -75,6 +79,7 @@ class LoginPage extends StatelessWidget {
               width: 370.0,
               height: 60.0,
               child: TextFormField(
+                controller: login_controller.userNameController,
                 decoration: InputDecoration(
                   labelStyle: const TextStyle(
                     color: Colors.black45,
@@ -95,6 +100,7 @@ class LoginPage extends StatelessWidget {
               width: 370.0,
               height: 60.0,
               child: TextFormField(
+                controller: login_controller.passWordController,
                 decoration: InputDecoration(
                   labelStyle: const TextStyle(
                     color: Colors.black45,
@@ -134,7 +140,9 @@ class LoginPage extends StatelessWidget {
                       shadowColor: Colors.blue,
                       elevation: 5.0,
                       backgroundColor: Colors.lightBlueAccent),
-                  onPressed: () {},
+                  onPressed: () {
+                    login_controller.login();
+                  },
                   child: const Text(
                     'Login',
                     style: TextStyle(
