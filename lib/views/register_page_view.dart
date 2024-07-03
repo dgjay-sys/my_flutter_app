@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import '../controllers/user_register_controller.dart';
+import 'package:get/get.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    UserRegister controller = Get.put(UserRegister());
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -70,6 +73,7 @@ class RegisterPage extends StatelessWidget {
               width: 365.0,
               height: 75.0,
               child: TextFormField(
+                controller: controller.fNameController,
                 decoration: InputDecoration(
                   labelStyle: const TextStyle(
                     color: Colors.black45,
@@ -87,6 +91,7 @@ class RegisterPage extends StatelessWidget {
               width: 365.0,
               height: 75.0,
               child: TextFormField(
+                controller: controller.lNameController,
                 decoration: InputDecoration(
                   labelStyle: const TextStyle(
                     color: Colors.black45,
@@ -104,6 +109,7 @@ class RegisterPage extends StatelessWidget {
               width: 365.0,
               height: 75.0,
               child: TextFormField(
+                controller: controller.userNameController,
                 decoration: InputDecoration(
                   labelStyle: const TextStyle(
                     color: Colors.black45,
@@ -121,6 +127,7 @@ class RegisterPage extends StatelessWidget {
               width: 365.0,
               height: 75.0,
               child: TextFormField(
+                controller: controller.passWordController,
                 decoration: InputDecoration(
                   labelStyle: const TextStyle(
                     color: Colors.black45,
@@ -145,7 +152,7 @@ class RegisterPage extends StatelessWidget {
                         shadowColor: Colors.blue,
                         elevation: 5.0,
                         backgroundColor: Colors.lightBlueAccent),
-                    onPressed: () {},
+                    onPressed: () => controller.userRegister(),
                     child: const Text('Sign Up',
                         style: TextStyle(
                             fontFamily: 'OpenSans',

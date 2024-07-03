@@ -113,6 +113,8 @@ class _BookHotelState extends State<BookHotel> {
     final Map<String, String>? data =
         ModalRoute.of(context)!.settings.arguments as Map<String, String>?;
 
+    print(data);
+
     if (data == null) {
       return const Scaffold(
         body: Center(
@@ -142,7 +144,7 @@ class _BookHotelState extends State<BookHotel> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  data['nHotel']!,
+                  data['title']!,
                   style: const TextStyle(
                     fontSize: 22.0,
                     fontWeight: FontWeight.bold,
@@ -154,7 +156,7 @@ class _BookHotelState extends State<BookHotel> {
                     const Icon(Icons.location_on, color: Colors.green),
                     const SizedBox(width: 4.0),
                     Text(
-                      data['subTitle']!,
+                      data['subtitle']!,
                       style: TextStyle(
                         fontSize: 16.0,
                         color: Colors.grey[700],
@@ -174,7 +176,7 @@ class _BookHotelState extends State<BookHotel> {
                 Row(
                   children: [
                     Text(
-                      '\$ ${data['price']!} / per night',
+                      '\$ ${data['perN']!} / per night',
                       style: const TextStyle(
                         fontSize: 22.0,
                         fontWeight: FontWeight.bold,
@@ -349,8 +351,8 @@ class _BookHotelState extends State<BookHotel> {
                 ElevatedButton(
                   onPressed: () async {
                     days = daysBetween(selectedDate, selectedDateEnd);
-                    totalPayment = getTotalBook(
-                        int.parse(data['price']!.toString()), days);
+                    totalPayment =
+                        getTotalBook(int.parse(data['perN']!.toString()), days);
                     await showDialog(
                         context: context,
                         builder: (context) {
@@ -371,13 +373,13 @@ class _BookHotelState extends State<BookHotel> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        'Room type: ${data['roomtype']!}',
-                                        style: const TextStyle(
-                                          fontFamily: 'OpenSans',
-                                          fontSize: 18.0,
-                                        ),
-                                      ),
+                                      // Text(
+                                      //   'Room type: ${data['roomtype']!}',
+                                      //   style: const TextStyle(
+                                      //     fontFamily: 'OpenSans',
+                                      //     fontSize: 18.0,
+                                      //   ),
+                                      // ),
                                       const SizedBox(
                                         height: 10.0,
                                       ),

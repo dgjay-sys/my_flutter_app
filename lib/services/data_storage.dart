@@ -9,6 +9,7 @@ class DataStorage {
 
     box.write('token', user.token.toString());
     box.write('fname', user.fname.toString());
+    box.write('username', user.username.toString());
     box.write('lname', user.lname.toString());
     box.write('userid', user.userId.toString());
   }

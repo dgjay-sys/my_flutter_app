@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:get/get.dart';
+import 'package:hotel_project/controllers/hotel_controller.dart';
+import 'package:hotel_project/controllers/user_controller.dart';
 import '../services/stored_data.dart';
 
 class HomePage extends StatefulWidget {
@@ -80,6 +83,8 @@ int currentPage = 0;
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    UserController userController = Get.put(UserController());
+    HotelController hotelController = Get.put(HotelController());
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -110,7 +115,7 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Text(dataStored.read('token').toString()),
+            //Text(dataStored.read('token').toString()),
             const SizedBox(
               height: 10.0,
             ),
@@ -147,28 +152,33 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             SizedBox(
-              height: 120,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: imageUrls.length,
-                itemBuilder: (context, index) {
-                  final personInfo = imageUrls[index];
-                  return Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(3.0),
-                        child: CircleAvatar(
-                          radius: 40, // Adjust the radius as needed
-                          backgroundImage:
-                              NetworkImage(personInfo['image'].toString()),
-                        ),
-                      ),
-                      Text(personInfo['name'].toString())
-                    ],
-                  );
-                },
-              ),
-            ),
+                height: 120,
+                child: Obx(
+                  () => ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: userController.users.length,
+                    itemBuilder: (context, index) {
+                      final user = userController.users[index];
+                      return Column(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.all(3.0),
+                            child: CircleAvatar(
+                              radius: 40, // Adjust the radius as needed
+                              backgroundImage: NetworkImage(
+                                  'https://random.dog/b3b20013-8bc5-40be-bafc-43fdabc18104.jpg'),
+                            ),
+                          ),
+                          Text(
+                            user.fname.toString(),
+                            style: const TextStyle(
+                                fontSize: 15, color: Colors.black),
+                          )
+                        ],
+                      );
+                    },
+                  ),
+                )),
             const SizedBox(
               height: 2.0,
             ),
@@ -273,8 +283,9 @@ class _HomePageState extends State<HomePage> {
                   return Card(
                     child: InkWell(
                       onTap: () {
-                        Navigator.pushNamed(context, '/viewinfo',
-                            arguments: item);
+                        // Navigator.pushNamed(context, '/viewinfo',
+                        //     arguments: item);
+                        Get.toNamed('/viewhotel', arguments: item);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -341,6 +352,85 @@ class _HomePageState extends State<HomePage> {
                 }),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: List.generate(hotelController.hotels.length, (index) {
+                  final hotel = hotelController.hotels[index];
+                  return Card(
+                    child: InkWell(
+                      onTap: () {
+                        // Navigator.pushNamed(context, '/viewinfo',
+                        //     arguments: item);
+
+                        //print(hotel);
+                        Get.toNamed('/viewhotel', arguments: hotel);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // ClipRRect(
+                            //   borderRadius: BorderRadius.circular(15.0),
+                            //   child: Image.asset(
+                            //     hotel['image'].toString(),
+                            //     height: 125,
+                            //     width: 150,
+                            //     fit: BoxFit.cover,
+                            //   ),
+                            // ),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    hotel.hotelName.toString(),
+                                    style: const TextStyle(
+                                      fontSize: 35,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'DMSerifDisplay',
+                                    ),
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Text(
+                                    hotel.hotelDesc.toString(),
+                                    style: const TextStyle(
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.location_on,
+                                        color: Colors.green,
+                                        size: 20,
+                                      ),
+                                      const SizedBox(width: 5),
+                                      const Text('2 km to city'),
+                                      const SizedBox(width: 10),
+                                      Text(
+                                        "\$${hotel.hotelStartingPrice.toString()}",
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                }),
+              ),
+            ),
           ],
         ),
       ),
@@ -353,7 +443,7 @@ class _HomePageState extends State<HomePage> {
               if (currentPageIndex == 1) {
                 Navigator.pushNamed(context, '/getstarted');
               } else if (currentPageIndex == 2) {
-                Navigator.pushNamed(context, '/profile');
+                Get.offNamed('/settings');
               } else {
                 Navigator.pushNamed(context, '/home');
               }

@@ -7,13 +7,14 @@ class UserController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // showUserList();
+    showUserList();
   }
 
-  // GlobalKey<FormState> userControllerFormKey = GlobalKey();
-  // var users = <User>[].obs;
-  // Future<void> showUserList() async {
-  //   var response = await ApiServices().getUserList();
-  //   users.value = response;
-  // }
+  GlobalKey<FormState> userControllerFormKey = GlobalKey();
+  var users = <User>[].obs;
+
+  Future<void> showUserList() async {
+    var response = await ApiServices().getUserList();
+    users.value = response;
+  }
 }

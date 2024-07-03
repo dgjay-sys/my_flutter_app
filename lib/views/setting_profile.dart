@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../services/stored_data.dart';
 
 class SettingProfile extends StatelessWidget {
   const SettingProfile({super.key});
@@ -11,29 +14,38 @@ class SettingProfile extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(10.0),
             margin: const EdgeInsets.only(top: 150.0),
-            child: const Row(
+            child: Row(
               //mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   backgroundImage: AssetImage('assets/get_started_image_2.png'),
                   radius: 55.0,
                 ),
                 Column(
                   children: [
                     Text(
-                      'User Name',
-                      style:
-                          TextStyle(fontFamily: 'PoestenOne', fontSize: 30.0),
+                      dataStored.read('fname').toString(),
+                      style: const TextStyle(
+                          fontFamily: 'PoestenOne', fontSize: 30.0),
                     ),
-                    Text(
-                      'View and edit profile',
-                      style: TextStyle(
-                          fontFamily: 'OpenSans',
-                          fontSize: 12.0,
-                          color: Colors.black45,
-                          fontWeight: FontWeight.bold),
-                    )
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 10.0, left: 5.0, right: 5.0),
+                      child: InkWell(
+                        child: const Text(
+                          'View and edit profile',
+                          style: TextStyle(
+                              fontFamily: 'OpenSans',
+                              fontSize: 12.0,
+                              color: Colors.black45,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        onTap: () {
+                          Get.offAllNamed('/userinfo');
+                        },
+                      ),
+                    ),
                   ],
                 ),
               ],

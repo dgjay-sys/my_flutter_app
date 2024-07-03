@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hotel_project/models/hotel_model.dart';
 
 class ViewHotel extends StatefulWidget {
   const ViewHotel({super.key});
@@ -47,8 +49,11 @@ class _ViewHotelState extends State<ViewHotel> {
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, String>? data =
-        ModalRoute.of(context)!.settings.arguments as Map<String, String>?;
+    // final Map<String, String>? data =
+    //     ModalRoute.of(context)!.settings.arguments as Map<String, String>?;
+    final data = Get.arguments as Hotel;
+
+    print(data.hotelName);
 
     if (data == null) {
       return const Scaffold(
@@ -65,7 +70,7 @@ class _ViewHotelState extends State<ViewHotel> {
             height: double.infinity,
             width: double.infinity,
             child: Image.asset(
-              data['image']!,
+              "assets/gateway-arch-67313_1920.jpg",
               fit: BoxFit.cover,
             ),
           ),
@@ -93,7 +98,7 @@ class _ViewHotelState extends State<ViewHotel> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    data['title']!,
+                    data.hotelName.toString(),
                     style: const TextStyle(
                       fontSize: 22.0,
                       fontWeight: FontWeight.bold,
@@ -105,7 +110,7 @@ class _ViewHotelState extends State<ViewHotel> {
                       const Icon(Icons.location_on, color: Colors.green),
                       const SizedBox(width: 4.0),
                       Text(
-                        data['subtitle']!,
+                        "sample street",
                         style: TextStyle(
                           fontSize: 16.0,
                           color: Colors.grey[700],
@@ -125,7 +130,7 @@ class _ViewHotelState extends State<ViewHotel> {
                   Row(
                     children: [
                       Text(
-                        '\$ ${data['perN']!} / per night',
+                        '\$ ${data.hotelStartingPrice} / per night',
                         style: const TextStyle(
                           fontSize: 22.0,
                           fontWeight: FontWeight.bold,
@@ -137,8 +142,9 @@ class _ViewHotelState extends State<ViewHotel> {
                   const SizedBox(height: 8.0),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/roomtype',
-                          arguments: data);
+                      // Navigator.pushNamed(context, '/roomtype',
+                      //     arguments: data);
+                      Get.toNamed('/bookhotel', arguments: data);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.teal,
@@ -295,7 +301,7 @@ class _ViewHotelState extends State<ViewHotel> {
           ),
           // Back Arrow Icon
           Positioned(
-            top: 35.0,
+            top: 40.0,
             left: 16.0,
             child: IconButton(
               onPressed: () {

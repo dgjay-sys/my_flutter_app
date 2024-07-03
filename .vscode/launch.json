@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "hotel_project",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "hotel_project (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "hotel_project (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "Flutter",
+            "program": "lib/main.dart",
+            "request": "launch",
+            "type": "dart"
+        }
+    ]
+}

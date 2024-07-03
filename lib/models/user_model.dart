@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 User userFromJson(String str) => User.fromJson(json.decode(str));
-
 String userToJson(User data) => json.encode(data.toJson());
 
 class User {
@@ -20,7 +19,7 @@ class User {
     this.username,
     this.password,
     this.role,
-    //this.createdAt,
+    this.createdAt,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => User(
@@ -30,7 +29,9 @@ class User {
         username: json["username"],
         password: json["password"],
         role: json["role"],
-        //createdAt: DateTime.parse(json["created_at"]),
+        createdAt: json["created_at"] == null
+            ? null
+            : DateTime.parse(json["created_at"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -40,5 +41,6 @@ class User {
         "username": username,
         "password": password,
         "role": role,
+        "created_at": createdAt?.toIso8601String(),
       };
 }

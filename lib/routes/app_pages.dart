@@ -11,12 +11,13 @@ import 'package:hotel_project/views/login_page_view.dart';
 import 'package:hotel_project/views/register_page_view.dart';
 import 'package:hotel_project/views/setting_profile.dart';
 import 'package:hotel_project/views/typeof_room.dart';
+import 'package:hotel_project/views/user_info_updates.dart';
 
 class AppPages {
   static var list = [
     GetPage(
       name: Routes.login,
-      page: () => LoginPage(),
+      page: () => const LoginPage(),
     ),
     GetPage(
       name: Routes.register,
@@ -24,7 +25,7 @@ class AppPages {
     ),
     GetPage(
       name: Routes.home,
-      page: () => HomePage(),
+      page: () => const HomePage(),
     ),
     GetPage(
       name: Routes.landing,
@@ -33,6 +34,16 @@ class AppPages {
     GetPage(
       name: Routes.started,
       page: () => const GetStarted(),
-    )
+    ),
+    GetPage(
+      name: Routes.settings,
+      page: () => const SettingProfile(),
+    ),
+    GetPage(
+      name: Routes.userinfo,
+      page: () => const UserInformation(),
+    ),
+    GetPage(name: Routes.viewhotel, page: () => const ViewHotel()),
+    GetPage(name: Routes.bookhotel, page: () => const BookHotel()),
   ];
 }
