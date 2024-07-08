@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 
 import 'package:hotel_project/models/auth_model.dart';
 import 'package:hotel_project/models/hotel_model.dart';
+import 'package:hotel_project/models/room_model.dart';
 import 'package:hotel_project/models/user_model.dart';
 //import 'package:hotel_project/models/user_model.dart';
 
@@ -76,5 +77,66 @@ class ApiServices {
       return hotel;
     }
     return [];
+  }
+
+  Future<List<Rooms>> getRoomListById(int hotelid) async {
+    //print(hotelid);
+    final responseRoomList = await dio.post('/getrooms',
+        data: jsonEncode({'hotelid': hotelid}),
+        options: Options(headers: {
+          HttpHeaders.acceptHeader: "application/json",
+          HttpHeaders.contentTypeHeader: "application/json"
+        }));
+    if (responseRoomList.statusCode == 200) {
+      List<dynamic> roomListByID = responseRoomList.data;
+      List<Rooms> room =
+          roomListByID.map((json) => Rooms.fromJson(json)).toList();
+      return room;
+    } else {
+      throw Exception('Failed to load rooms');
+    }
+  }
+
+  Future<List<Hotel>> getHotelInfoById(int hotelid) async {
+    final responseRoomList = await dio.post('/gethotelinfo',
+        data: jsonEncode({'hotelid': hotelid}),
+        options: Options(headers: {
+          HttpHeaders.acceptHeader: "application/json",
+          HttpHeaders.contentTypeHeader: "application/json"
+        }));
+    if (responseRoomList.statusCode == 200) {
+      List<dynamic> hotelInfoByID = responseRoomList.data;
+      List<Hotel> hotel =
+          hotelInfoByID.map((json) => Hotel.fromJson(json)).toList();
+      return hotel;
+    } else {
+      throw Exception('Failed to load Hotel Info');
+    }
+  }
+
+  Future<void> getHotelReserve(
+      int hotelId,
+      String hotelName,
+      String hotelTypeRoom,
+      String dateDepart,
+      String dateReturn,
+      int totalPayment) async {
+    final response = await dio.post('/addreserve',
+        data: jsonEncode({
+          "hotelId": hotelId,
+          "hotelName": hotelName,
+          "hotelTypeRoom": hotelTypeRoom,
+          "dateDepart": dateDepart,
+          "dateReturn": dateReturn,
+          "totalPayment": totalPayment
+        }),
+        options: Options(headers: {
+          HttpHeaders.acceptHeader: "application/json",
+          HttpHeaders.contentTypeHeader: "application/json"
+        }));
+
+    if (response.statusCode == 200) {
+      print(response.data);
+    }
   }
 }

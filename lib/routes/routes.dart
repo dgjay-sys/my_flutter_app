@@ -8,4 +8,5 @@ class Routes {
   static const String userinfo = "/userinfo";
   static const String viewhotel = "/viewhotel";
   static const String bookhotel = "/bookhotel";
+  static const String hotelroom = "/hotelroom";
 }

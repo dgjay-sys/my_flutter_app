@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hotel_project/controllers/hotel_controller.dart';
 import 'package:hotel_project/models/hotel_model.dart';
+import 'package:hotel_project/views/typeof_room.dart';
 
 class ViewHotel extends StatefulWidget {
-  const ViewHotel({super.key});
+  final Hotel hotel;
+
+  const ViewHotel({super.key, required this.hotel});
 
   @override
   State<ViewHotel> createState() => _ViewHotelState();
@@ -11,6 +15,16 @@ class ViewHotel extends StatefulWidget {
 
 class _ViewHotelState extends State<ViewHotel> {
   bool clickAction = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    HotelController hotelController = Get.put(HotelController());
+    hotelController.showHotelRoomsList(widget.hotel.hotelId!);
+    hotelController.showHotelInfo(widget.hotel.hotelId!);
+  }
 
   final List<Map<String, String>> reviews = [
     {
@@ -51,17 +65,18 @@ class _ViewHotelState extends State<ViewHotel> {
   Widget build(BuildContext context) {
     // final Map<String, String>? data =
     //     ModalRoute.of(context)!.settings.arguments as Map<String, String>?;
-    final data = Get.arguments as Hotel;
+    // HotelController hotelController = Get.put(HotelController());
+    //final data = Get.arguments;
 
-    print(data.hotelName);
+    //print(data);
 
-    if (data == null) {
-      return const Scaffold(
-        body: Center(
-          child: Text('No data available'),
-        ),
-      );
-    }
+    // if (data == null) {
+    //   return const Scaffold(
+    //     body: Center(
+    //       child: Text('No data available'),
+    //     ),
+    //   );
+    // }
     return Scaffold(
       body: Stack(
         children: [
@@ -98,7 +113,7 @@ class _ViewHotelState extends State<ViewHotel> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    data.hotelName.toString(),
+                    widget.hotel.hotelName.toString(),
                     style: const TextStyle(
                       fontSize: 22.0,
                       fontWeight: FontWeight.bold,
@@ -130,7 +145,7 @@ class _ViewHotelState extends State<ViewHotel> {
                   Row(
                     children: [
                       Text(
-                        '\$ ${data.hotelStartingPrice} / per night',
+                        '\$ ${widget.hotel.hotelStartingPrice.toString()} / per night',
                         style: const TextStyle(
                           fontSize: 22.0,
                           fontWeight: FontWeight.bold,
@@ -142,9 +157,7 @@ class _ViewHotelState extends State<ViewHotel> {
                   const SizedBox(height: 8.0),
                   ElevatedButton(
                     onPressed: () {
-                      // Navigator.pushNamed(context, '/roomtype',
-                      //     arguments: data);
-                      Get.toNamed('/bookhotel', arguments: data);
+                      Get.to(() => TypeOfRoom());
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.teal,

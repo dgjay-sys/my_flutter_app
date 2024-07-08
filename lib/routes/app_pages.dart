@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:hotel_project/models/hotel_model.dart';
 import 'package:hotel_project/routes/routes.dart';
 
 import 'package:hotel_project/views/components/book_hotel.dart';
@@ -43,7 +44,12 @@ class AppPages {
       name: Routes.userinfo,
       page: () => const UserInformation(),
     ),
-    GetPage(name: Routes.viewhotel, page: () => const ViewHotel()),
+    GetPage(
+        name: Routes.viewhotel,
+        page: () => ViewHotel(
+              hotel: Hotel(),
+            )),
     GetPage(name: Routes.bookhotel, page: () => const BookHotel()),
+    GetPage(name: Routes.hotelroom, page: () => const TypeOfRoom()),
   ];
 }
