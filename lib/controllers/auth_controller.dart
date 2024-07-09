@@ -18,8 +18,6 @@ class AuthController extends GetxController {
     var response = await ApiServices()
         .login(userNameController.text, passWordController.text);
     DataStorage().setDataStorage(response);
-    //print(response);
-
     Get.offAllNamed('/home');
   }
 }

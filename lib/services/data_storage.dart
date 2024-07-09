@@ -5,8 +5,6 @@ class DataStorage {
   final box = GetStorage();
 
   Future setDataStorage(Auth user) async {
-    //user = userFromJson(user);
-
     box.write('token', user.token.toString());
     box.write('fname', user.fname.toString());
     box.write('username', user.username.toString());

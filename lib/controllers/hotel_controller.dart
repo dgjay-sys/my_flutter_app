@@ -42,7 +42,5 @@ class HotelController extends GetxController {
       int totalPayment) async {
     await ApiServices().getHotelReserve(hotelId, hotelName, hotelTypeRoom,
         dateDepart, dateReturn, totalPayment);
-    //print(response);
-    //print(dateReturn);
   }
 }

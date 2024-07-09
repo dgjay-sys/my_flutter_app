@@ -7,6 +7,7 @@ import 'package:hotel_project/models/auth_model.dart';
 import 'package:hotel_project/models/hotel_model.dart';
 import 'package:hotel_project/models/room_model.dart';
 import 'package:hotel_project/models/user_model.dart';
+import 'package:hotel_project/services/stored_data.dart';
 //import 'package:hotel_project/models/user_model.dart';
 
 class ApiServices {
@@ -135,6 +136,48 @@ class ApiServices {
           HttpHeaders.contentTypeHeader: "application/json"
         }));
 
+    if (response.statusCode == 200) {
+      print(response.data);
+    }
+  }
+
+  //*user info Update
+  Future<void> updateUserFname(int userId, String newFname) async {
+    //print();
+    final response = await dio.post('/updatefname',
+        data: jsonEncode({"newFname": newFname, "userId": userId}),
+        options: Options(headers: {
+          HttpHeaders.acceptHeader: "application/json",
+          HttpHeaders.contentTypeHeader: "application/json",
+          //HttpHeaders.authorizationHeader:,
+          "authorization": "Bearer ${dataStored.read('token').toString()}",
+        }));
+    if (response.statusCode == 200) {
+      print(response.data);
+    }
+  }
+
+  Future<void> updateUserLname(int userId, String newLname) async {
+    final response = await dio.post('/updatelname',
+        data: jsonEncode({"newLname": newLname, "userId": userId}),
+        options: Options(headers: {
+          HttpHeaders.acceptHeader: "application/json",
+          HttpHeaders.contentTypeHeader: "application/json",
+          "authorization": "Bearer ${dataStored.read('token').toString()}",
+        }));
+    if (response.statusCode == 200) {
+      print(response.data);
+    }
+  }
+
+  Future<void> updateUsername(int userId, String newUsername) async {
+    final response = await dio.put('/updateusername',
+        data: jsonEncode({"newUsername": newUsername, "userId": userId}),
+        options: Options(headers: {
+          HttpHeaders.acceptHeader: "application/json",
+          HttpHeaders.contentTypeHeader: "application/json",
+          "authorization": "Bearer ${dataStored.read('token').toString()}",
+        }));
     if (response.statusCode == 200) {
       print(response.data);
     }
