@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hotel_project/controllers/hotel_controller.dart';
 
 import '../services/stored_data.dart';
 
@@ -8,6 +9,7 @@ class SettingProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    HotelController hotelController = Get.put(HotelController());
     return Scaffold(
       body: Column(
         children: [
@@ -129,7 +131,8 @@ class SettingProfile extends StatelessWidget {
           SizedBox(
             width: 500,
             child: TextButton(
-              onPressed: () {},
+              onPressed: () => hotelController
+                  .showHotelReserved(int.parse(dataStored.read('userid'))),
               style: TextButton.styleFrom(
                   padding: const EdgeInsets.all(16.0),
                   shape: const RoundedRectangleBorder(
@@ -138,14 +141,14 @@ class SettingProfile extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    'Credits & Coupons',
+                    'View Hotel Reserved',
                     style: TextStyle(
                         color: Colors.black87,
                         fontFamily: 'PoestenOne',
                         fontSize: 18.0 // Text color
                         ),
                   ),
-                  SizedBox(width: 145.0), // Spacing between text and icon
+                  SizedBox(width: 135.0), // Spacing between text and icon
                   Icon(
                     Icons.card_giftcard,
                     color: Colors.black45,

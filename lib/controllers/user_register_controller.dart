@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hotel_project/services/app_services.dart';
-import 'package:hotel_project/services/data_storage.dart';
+//import 'package:hotel_project/services/data_storage.dart';
 
 class UserRegister extends GetxController {
   GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
@@ -19,7 +19,7 @@ class UserRegister extends GetxController {
   }
 
   Future<void> userRegister() async {
-    var response = await ApiServices().register(userNameController.text,
+    await ApiServices().register(userNameController.text,
         passWordController.text, lNameController.text, fNameController.text);
     Get.offAllNamed('/login');
   }

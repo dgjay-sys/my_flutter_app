@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 
 import 'package:hotel_project/models/auth_model.dart';
 import 'package:hotel_project/models/hotel_model.dart';
+import 'package:hotel_project/models/hotel_reserve_model.dart';
 import 'package:hotel_project/models/room_model.dart';
 import 'package:hotel_project/models/user_model.dart';
 import 'package:hotel_project/services/stored_data.dart';
@@ -81,7 +82,6 @@ class ApiServices {
   }
 
   Future<List<Rooms>> getRoomListById(int hotelid) async {
-    //print(hotelid);
     final responseRoomList = await dio.post('/getrooms',
         data: jsonEncode({'hotelid': hotelid}),
         options: Options(headers: {
@@ -117,6 +117,7 @@ class ApiServices {
 
   Future<void> getHotelReserve(
       int hotelId,
+      int userId,
       String hotelName,
       String hotelTypeRoom,
       String dateDepart,
@@ -125,6 +126,7 @@ class ApiServices {
     final response = await dio.post('/addreserve',
         data: jsonEncode({
           "hotelId": hotelId,
+          "userId": userId,
           "hotelName": hotelName,
           "hotelTypeRoom": hotelTypeRoom,
           "dateDepart": dateDepart,
@@ -180,6 +182,24 @@ class ApiServices {
         }));
     if (response.statusCode == 200) {
       print(response.data);
+    }
+  }
+
+  //*view reserved hotel
+  Future<List<Reserve>> showReservedHotelRoom(int userid) async {
+    final response = await dio.post('/getreserve',
+        data: jsonEncode({"userId": userid}),
+        options: Options(headers: {
+          HttpHeaders.acceptHeader: "application/json",
+          HttpHeaders.contentTypeHeader: "application/json",
+        }));
+    if (response.statusCode == 200) {
+      List<dynamic> hotelReserveInfoByID = response.data;
+      List<Reserve> hotelreserved =
+          hotelReserveInfoByID.map((json) => Reserve.fromJson(json)).toList();
+      return hotelreserved;
+    } else {
+      throw Exception('Failed to load Hotel Info');
     }
   }
 }

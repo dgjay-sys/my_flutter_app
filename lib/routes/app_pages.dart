@@ -4,7 +4,8 @@ import 'package:hotel_project/routes/routes.dart';
 
 import 'package:hotel_project/views/components/book_hotel.dart';
 import 'package:hotel_project/views/components/view_hotel.dart';
-import 'package:hotel_project/views/forgot_password.dart';
+import 'package:hotel_project/views/components/view_hotel_reserve.dart';
+//import 'package:hotel_project/views/forgot_password.dart';
 import 'package:hotel_project/views/get_started.dart';
 import 'package:hotel_project/views/home_page_view.dart';
 import 'package:hotel_project/views/landing_page_view.dart';
@@ -51,5 +52,6 @@ class AppPages {
             )),
     GetPage(name: Routes.bookhotel, page: () => const BookHotel()),
     GetPage(name: Routes.hotelroom, page: () => const TypeOfRoom()),
+    GetPage(name: Routes.toreserve, page: () => const ViewHotelReserve()),
   ];
 }

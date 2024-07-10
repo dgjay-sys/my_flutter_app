@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'hotel reservation',
-      initialRoute: '/landing',
+      initialRoute: '/home',
       getPages: AppPages.list,
       // home: const HomePage(),
       // routes: {

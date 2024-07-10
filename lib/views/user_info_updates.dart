@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hotel_project/controllers/user_controller.dart';
-import 'package:hotel_project/services/data_storage.dart';
+//import 'package:hotel_project/services/data_storage.dart';
 import '../services/stored_data.dart';
 
 class UserInformation extends StatelessWidget {

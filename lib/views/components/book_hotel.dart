@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_project/controllers/hotel_controller.dart';
-import 'package:hotel_project/models/hotel_model.dart';
+import 'package:hotel_project/services/stored_data.dart';
+//import 'package:hotel_project/models/hotel_model.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:get/get.dart';
 
@@ -724,22 +725,27 @@ class _BookHotelState extends State<BookHotel> {
                                           style: ElevatedButton.styleFrom(
                                             backgroundColor: Colors.teal,
                                           ),
-                                          onPressed: () =>
-                                              hotelController.addHotelReserv(
-                                                  int.parse(hotelinfo.hotelId
-                                                      .toString()),
-                                                  hotelinfo.hotelName
-                                                      .toString(),
-                                                  data["roomtype"].toString(),
-                                                  selectedDate
-                                                      .toLocal()
-                                                      .toString()
-                                                      .split(' ')[0],
-                                                  selectedDateEnd
-                                                      .toLocal()
-                                                      .toString()
-                                                      .split(' ')[0],
-                                                  totalPayment),
+                                          onPressed: () => {
+                                                hotelController.addHotelReserv(
+                                                    int.parse(hotelinfo.hotelId
+                                                        .toString()),
+                                                    int.parse(dataStored
+                                                        .read('userid')
+                                                        .toString()),
+                                                    hotelinfo.hotelName
+                                                        .toString(),
+                                                    data["roomtype"].toString(),
+                                                    selectedDate
+                                                        .toLocal()
+                                                        .toString()
+                                                        .split(' ')[0],
+                                                    selectedDateEnd
+                                                        .toLocal()
+                                                        .toString()
+                                                        .split(' ')[0],
+                                                    totalPayment),
+                                                Get.offAllNamed('/home')
+                                              },
                                           child: const Text(
                                             'Continue',
                                             style: TextStyle(

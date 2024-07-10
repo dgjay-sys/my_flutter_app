@@ -3,7 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
 import 'package:hotel_project/controllers/hotel_controller.dart';
 import 'package:hotel_project/controllers/user_controller.dart';
-import '../services/stored_data.dart';
+//import '../services/stored_data.dart';
 import 'components/view_hotel.dart';
 
 class HomePage extends StatefulWidget {
@@ -450,11 +450,12 @@ class _HomePageState extends State<HomePage> {
             setState(() {
               currentPageIndex = index;
               if (currentPageIndex == 1) {
-                Navigator.pushNamed(context, '/getstarted');
+                //Navigator.pushNamed(context, '/getstarted');
               } else if (currentPageIndex == 2) {
-                Get.offNamed('/settings');
+                Get.toNamed('/settings');
               } else {
-                Navigator.pushNamed(context, '/home');
+                //Navigator.pushNamed(context, '/home');
+                Get.toNamed('/home');
               }
             });
           },
