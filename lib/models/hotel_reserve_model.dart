@@ -16,6 +16,7 @@ class Reserve {
   DateTime? dateDepart;
   DateTime? dateReturn;
   int? totalPayment;
+  String? reserveStatus;
   String? hotelDesc;
   String? hotelEmail;
   int? hotelStartingPrice;
@@ -35,6 +36,7 @@ class Reserve {
     this.dateDepart,
     this.dateReturn,
     this.totalPayment,
+    this.reserveStatus,
     this.hotelDesc,
     this.hotelEmail,
     this.hotelStartingPrice,
@@ -59,6 +61,7 @@ class Reserve {
             ? null
             : DateTime.parse(json["date_return"]),
         totalPayment: json["total_payment"],
+        reserveStatus: json["reserve_status"],
         hotelDesc: json["hotel_desc"],
         hotelEmail: json["hotel_email"],
         hotelStartingPrice: json["hotel_starting_price"],
@@ -81,6 +84,7 @@ class Reserve {
         "date_depart": dateDepart?.toIso8601String(),
         "date_return": dateReturn?.toIso8601String(),
         "total_payment": totalPayment,
+        "reserve_status": reserveStatus,
         "hotel_desc": hotelDesc,
         "hotel_email": hotelEmail,
         "hotel_starting_price": hotelStartingPrice,

@@ -10,4 +10,5 @@ class Routes {
   static const String bookhotel = "/bookhotel";
   static const String hotelroom = "/hotelroom";
   static const String toreserve = "/toreserve";
+  static const String viewreserve = "/viewreserve";
 }

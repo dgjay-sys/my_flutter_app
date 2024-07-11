@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:hotel_project/controllers/hotel_controller.dart';
 
@@ -17,7 +16,7 @@ class _ViewHotelReserveState extends State<ViewHotelReserve> {
 
     var reserveHotelInfo = hotelController.reservedHotel;
 
-    //print(reserveHotelInfo);
+    print(reserveHotelInfo);
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -106,6 +105,8 @@ class _ViewHotelReserveState extends State<ViewHotelReserve> {
                                             backgroundColor:
                                                 Colors.lightBlueAccent),
                                         onPressed: () {
+                                          Get.toNamed('/viewreserve',
+                                              arguments: [reserveHotel]);
                                           // hotelController.showHotelInfo(
                                           //     reserveHotel.hotelId!);
 
