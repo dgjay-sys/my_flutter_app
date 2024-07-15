@@ -17,7 +17,7 @@ class _TypeOfRoomState extends State<TypeOfRoom> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
+        title: const Row(
           children: [
             // Expanded(
             //   flex: 1,

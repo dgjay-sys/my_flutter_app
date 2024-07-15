@@ -18,7 +18,6 @@ class _ViewHotelState extends State<ViewHotel> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     HotelController hotelController = Get.put(HotelController());
@@ -70,13 +69,13 @@ class _ViewHotelState extends State<ViewHotel> {
 
     //print(data);
 
-    // if (data == null) {
-    //   return const Scaffold(
-    //     body: Center(
-    //       child: Text('No data available'),
-    //     ),
-    //   );
-    // }
+    if (widget.hotel.hotelId == null) {
+      return const Scaffold(
+        body: Center(
+          child: Text('No data available'),
+        ),
+      );
+    }
     return Scaffold(
       body: Stack(
         children: [
@@ -157,7 +156,7 @@ class _ViewHotelState extends State<ViewHotel> {
                   const SizedBox(height: 8.0),
                   ElevatedButton(
                     onPressed: () {
-                      Get.to(() => TypeOfRoom());
+                      Get.to(() => const TypeOfRoom());
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.teal,

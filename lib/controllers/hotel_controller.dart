@@ -51,4 +51,14 @@ class HotelController extends GetxController {
     reservedHotel.value = response;
     Get.toNamed("/toreserve");
   }
+
+  Future<void> cancelBooked(int userid, int reserveid) async {
+    await ApiServices().cancelStatus(userid, reserveid);
+  }
+
+  Future<void> refreshReserveHotel(int userid) async {
+    var response = await ApiServices().showReservedHotelRoom(userid);
+    reservedHotel.value = response;
+    //Get.toNamed("/toreserve");
+  }
 }

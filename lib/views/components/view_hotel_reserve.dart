@@ -16,7 +16,7 @@ class _ViewHotelReserveState extends State<ViewHotelReserve> {
 
     var reserveHotelInfo = hotelController.reservedHotel;
 
-    print(reserveHotelInfo);
+    //print(reserveHotelInfo);
 
     return Scaffold(
       body: SingleChildScrollView(

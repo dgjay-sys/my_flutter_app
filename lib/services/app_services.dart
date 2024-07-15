@@ -59,14 +59,15 @@ class ApiServices {
             HttpHeaders.contentTypeHeader: "application/x-www-form-urlencoded"
           }));
       if (response.statusCode == 200) {
-        print(response.data);
+        //print(response.data);
       }
     } catch (e) {
-      if (e is DioError) {
-        print("Dio error: ${e.message}");
-      } else {
-        print("Unexpected error: $e");
-      }
+      // if (e is DioError) {
+      //   //print("Dio error: ${e.message}");
+
+      // } else {
+      //   //print("Unexpected error: $e");
+      // }
     }
   }
 
@@ -139,7 +140,7 @@ class ApiServices {
         }));
 
     if (response.statusCode == 200) {
-      print(response.data);
+      //print(response.data);
     }
   }
 
@@ -155,7 +156,7 @@ class ApiServices {
           "authorization": "Bearer ${dataStored.read('token').toString()}",
         }));
     if (response.statusCode == 200) {
-      print(response.data);
+      //print(response.data);
     }
   }
 
@@ -168,7 +169,7 @@ class ApiServices {
           "authorization": "Bearer ${dataStored.read('token').toString()}",
         }));
     if (response.statusCode == 200) {
-      print(response.data);
+      //print(response.data);
     }
   }
 
@@ -181,7 +182,7 @@ class ApiServices {
           "authorization": "Bearer ${dataStored.read('token').toString()}",
         }));
     if (response.statusCode == 200) {
-      print(response.data);
+      //print(response.data);
     }
   }
 
@@ -200,6 +201,22 @@ class ApiServices {
       return hotelreserved;
     } else {
       throw Exception('Failed to load Hotel Info');
+    }
+  }
+
+  Future<void> cancelStatus(int userid, int reserveid) async {
+    final response = await dio.put('/cancelbook',
+        data: jsonEncode({"userId": userid, "reserveId": reserveid}),
+        options: Options(headers: {
+          HttpHeaders.acceptHeader: "application/json",
+          HttpHeaders.contentTypeHeader: "application/json",
+          "authorization": "Bearer ${dataStored.read('token').toString()}"
+        }));
+    if (response.statusCode == 200) {
+      print(response.data);
+    } else {
+      print(userid);
+      print(reserveid);
     }
   }
 }

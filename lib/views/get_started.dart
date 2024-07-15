@@ -31,10 +31,8 @@ class _GetStartedState extends State<GetStarted> {
             ),
             CarouselSlider(
                 items: imgList
-                    .map((e) => Container(
-                          child: Center(
-                            child: Image.asset(e),
-                          ),
+                    .map((e) => Center(
+                          child: Image.asset(e),
                         ))
                     .toList(),
                 options: CarouselOptions(
@@ -131,20 +129,18 @@ class _GetStartedState extends State<GetStarted> {
 }
 
 buildCarouselIndicator() {
-  return Container(
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        for (int i = 0; i < imgList.length; i++)
-          Container(
-            height: i == currentPage ? 7 : 5,
-            width: i == currentPage ? 7 : 5,
-            margin: const EdgeInsets.all(5),
-            decoration: BoxDecoration(
-                color: i == currentPage ? Colors.black : Colors.grey,
-                shape: BoxShape.circle),
-          ),
-      ],
-    ),
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      for (int i = 0; i < imgList.length; i++)
+        Container(
+          height: i == currentPage ? 7 : 5,
+          width: i == currentPage ? 7 : 5,
+          margin: const EdgeInsets.all(5),
+          decoration: BoxDecoration(
+              color: i == currentPage ? Colors.black : Colors.grey,
+              shape: BoxShape.circle),
+        ),
+    ],
   );
 }

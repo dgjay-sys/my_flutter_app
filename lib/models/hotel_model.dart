@@ -12,6 +12,7 @@ class Hotel {
   int? hotelId;
   String? hotelName;
   String? hotelDesc;
+  String? hotelAddress;
   int? userId;
   String? hotelEmail;
   int? hotelStartingPrice;
@@ -21,6 +22,7 @@ class Hotel {
     this.hotelId,
     this.hotelName,
     this.hotelDesc,
+    this.hotelAddress,
     this.userId,
     this.hotelEmail,
     this.hotelStartingPrice,
@@ -31,6 +33,7 @@ class Hotel {
         hotelId: json["hotel_id"],
         hotelName: json["hotel_name"],
         hotelDesc: json["hotel_desc"],
+        hotelAddress: json["hotel_address"],
         userId: json["user_id"],
         hotelEmail: json["hotel_email"],
         hotelStartingPrice: json["hotel_starting_price"],
@@ -43,6 +46,7 @@ class Hotel {
         "hotel_id": hotelId,
         "hotel_name": hotelName,
         "hotel_desc": hotelDesc,
+        "hotel_address": hotelAddress,
         "user_id": userId,
         "hotel_email": hotelEmail,
         "hotel_starting_price": hotelStartingPrice,

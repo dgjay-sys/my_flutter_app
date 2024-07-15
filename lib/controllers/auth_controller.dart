@@ -8,7 +8,6 @@ class AuthController extends GetxController {
   late TextEditingController passWordController;
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     userNameController = TextEditingController();
     passWordController = TextEditingController();

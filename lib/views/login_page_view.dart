@@ -8,7 +8,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AuthController login_controller = Get.put(AuthController());
+    AuthController loginController = Get.put(AuthController());
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -79,7 +79,7 @@ class LoginPage extends StatelessWidget {
               width: 370.0,
               height: 60.0,
               child: TextFormField(
-                controller: login_controller.userNameController,
+                controller: loginController.userNameController,
                 decoration: InputDecoration(
                   labelStyle: const TextStyle(
                     color: Colors.black45,
@@ -100,7 +100,7 @@ class LoginPage extends StatelessWidget {
               width: 370.0,
               height: 60.0,
               child: TextFormField(
-                controller: login_controller.passWordController,
+                controller: loginController.passWordController,
                 decoration: InputDecoration(
                   labelStyle: const TextStyle(
                     color: Colors.black45,
@@ -141,7 +141,7 @@ class LoginPage extends StatelessWidget {
                       elevation: 5.0,
                       backgroundColor: Colors.lightBlueAccent),
                   onPressed: () {
-                    login_controller.login();
+                    loginController.login();
                   },
                   child: const Text(
                     'Login',
