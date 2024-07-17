@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
 import 'package:hotel_project/controllers/hotel_controller.dart';
 import 'package:hotel_project/controllers/user_controller.dart';
+import 'package:hotel_project/services/stored_data.dart';
 //import '../services/stored_data.dart';
 import 'components/view_hotel.dart';
 
@@ -47,46 +48,186 @@ final List<Map<String, String>> locList = [
   },
   // Add more items here
 ];
-
-// final List<Map<String, String>> imageUrls = [
-//   {
-//     'image': 'https://random.dog/e82e125b-94c4-4313-852d-6be6ae41da41.jpg',
-//     'name': 'name 1',
-//     'comment': "Lorem ipsum dolor sit amet."
-//   },
-//   {
-//     'image': 'https://random.dog/0ced6461-bfc4-4987-bf41-638f23ce21c2.jpg',
-//     'name': 'name 2',
-//     'comment':
-//         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium pellentesque elit, ac elementum mi.'
-//   },
-//   {
-//     'image': 'https://random.dog/0415ca3e-0e99-4afa-bec6-bd8a4a7ff6ff.PNG',
-//     'name': 'name 3',
-//     'comment':
-//         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium pellentesque elit, ac elementum mi.'
-//   },
-//   {
-//     'image': 'https://random.dog/f434f09a-0d75-443b-a0ed-e13d5b8703c3.jpg',
-//     'name': 'name 4',
-//     'comment':
-//         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium pellentesque elit, ac elementum mi.'
-//   },
-//   {
-//     'image': 'https://random.dog/b3b20013-8bc5-40be-bafc-43fdabc18104.jpg',
-//     'name': 'name 5',
-//     'comment':
-//         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium pellentesque elit, ac elementum mi.'
-//   },
-// ];
 int currentPage = 0;
+
+void showAddHotelDialog(BuildContext context, HotelController hotelController) {
+  showDialog<String>(
+    context: context,
+    builder: (BuildContext context) => Dialog.fullscreen(
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            const Text('This is a fullscreen dialog.'),
+            Container(
+              width: 370.0,
+              height: 60.0,
+              margin: const EdgeInsets.all(5.0),
+              child: TextFormField(
+                controller: hotelController.imgUrlController,
+                decoration: InputDecoration(
+                  labelStyle: const TextStyle(
+                    color: Colors.black45,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  labelText: 'Image Url',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 370.0,
+              height: 60.0,
+              margin: const EdgeInsets.all(5.0),
+              child: TextFormField(
+                controller: hotelController.hotelNameController,
+                decoration: InputDecoration(
+                  labelStyle: const TextStyle(
+                    color: Colors.black45,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  labelText: 'Hotel Name',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 370.0,
+              height: 150.0,
+              margin: const EdgeInsets.all(5.0),
+              child: TextFormField(
+                controller: hotelController.hotelDescController,
+                maxLines: 20,
+                decoration: InputDecoration(
+                  labelStyle: const TextStyle(
+                    color: Colors.black45,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  labelText: 'Hotel Description',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 370.0,
+              height: 60.0,
+              margin: const EdgeInsets.all(5.0),
+              child: TextFormField(
+                controller: hotelController.hotelAddController,
+                maxLines: 3,
+                decoration: InputDecoration(
+                  labelStyle: const TextStyle(
+                    color: Colors.black45,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  labelText: 'Hotel Address',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 370.0,
+              height: 60.0,
+              margin: const EdgeInsets.all(5.0),
+              child: TextFormField(
+                controller: hotelController.hotelEmailController,
+                decoration: InputDecoration(
+                  labelStyle: const TextStyle(
+                    color: Colors.black45,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  labelText: 'Hotel Email',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 370.0,
+              height: 60.0,
+              margin: const EdgeInsets.all(5.0),
+              child: TextFormField(
+                controller: hotelController.hotelSPriceController,
+                decoration: InputDecoration(
+                  labelStyle: const TextStyle(
+                    color: Colors.black45,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  labelText: 'Starting Price',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SizedBox(
+                  width: 150.0,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      //Navigator.pop(context);
+                      hotelController.addHotels();
+                    },
+                    child: const Text('Add'),
+                  ),
+                ),
+                SizedBox(
+                  width: 150.0,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text('Close'),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+Widget _buildFloatingActionButton(
+    BuildContext context, HotelController hotelController) {
+  if (dataStored.read('role') == 'admin') {
+    return FloatingActionButton(
+      backgroundColor: const Color.fromARGB(255, 3, 138, 242),
+      tooltip: 'Add Hotel',
+      onPressed: () => showAddHotelDialog(context, hotelController),
+      child: const Icon(Icons.add, color: Colors.white, size: 28),
+    );
+  } else {
+    return const SizedBox.shrink();
+  }
+}
 
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     UserController userController = Get.put(UserController());
     HotelController hotelController = Get.put(HotelController());
+
     return Scaffold(
+      floatingActionButton:
+          _buildFloatingActionButton(context, hotelController),
       appBar: AppBar(
         title: Row(
           children: [
@@ -265,94 +406,6 @@ class _HomePageState extends State<HomePage> {
                     );
                   }),
             ),
-            // Container(
-            //   alignment: Alignment.topLeft,
-            //   margin: const EdgeInsets.only(left: 10.0),
-            //   child: const Text(
-            //     'Best Deals',
-            //     style: TextStyle(
-            //         fontFamily: 'DMSerifDisplay',
-            //         fontSize: 20.0,
-            //         fontWeight: FontWeight.bold),
-            //   ),
-            // ),
-            // Padding(
-            //   padding: const EdgeInsets.all(8.0),
-            //   child: Column(
-            //     children: List.generate(locList.length, (index) {
-            //       final item = locList[index];
-            //       return Card(
-            //         child: InkWell(
-            //           onTap: () {
-            //             // Navigator.pushNamed(context, '/viewinfo',
-            //             //     arguments: item);
-            //             Get.toNamed('/viewhotel', arguments: item);
-            //           },
-            //           child: Padding(
-            //             padding: const EdgeInsets.all(8.0),
-            //             child: Row(
-            //               crossAxisAlignment: CrossAxisAlignment.start,
-            //               children: [
-            //                 ClipRRect(
-            //                   borderRadius: BorderRadius.circular(15.0),
-            //                   child: Image.asset(
-            //                     item['image'].toString(),
-            //                     height: 125,
-            //                     width: 150,
-            //                     fit: BoxFit.cover,
-            //                   ),
-            //                 ),
-            //                 const SizedBox(width: 10),
-            //                 Expanded(
-            //                   child: Column(
-            //                     crossAxisAlignment: CrossAxisAlignment.start,
-            //                     children: [
-            //                       Text(
-            //                         item['title'].toString(),
-            //                         style: const TextStyle(
-            //                           fontSize: 35,
-            //                           fontWeight: FontWeight.bold,
-            //                           fontFamily: 'DMSerifDisplay',
-            //                         ),
-            //                       ),
-            //                       const SizedBox(height: 5),
-            //                       Text(
-            //                         item['subtitle'].toString(),
-            //                         style: const TextStyle(
-            //                           color: Colors.grey,
-            //                         ),
-            //                       ),
-            //                       const SizedBox(height: 10),
-            //                       Row(
-            //                         children: [
-            //                           const Icon(
-            //                             Icons.location_on,
-            //                             color: Colors.green,
-            //                             size: 20,
-            //                           ),
-            //                           const SizedBox(width: 5),
-            //                           const Text('2 km to city'),
-            //                           const SizedBox(width: 10),
-            //                           Text(
-            //                             "\$${item['perN'].toString()}",
-            //                             style: const TextStyle(
-            //                               fontSize: 16,
-            //                               fontWeight: FontWeight.bold,
-            //                             ),
-            //                           ),
-            //                         ],
-            //                       ),
-            //                     ],
-            //                   ),
-            //                 ),
-            //               ],
-            //             ),
-            //           ),
-            //         ),
-            //       );
-            //     }),
-            //   ),
-            // ),
 
             Container(
               alignment: Alignment.topLeft,
@@ -374,6 +427,8 @@ class _HomePageState extends State<HomePage> {
                     child: InkWell(
                       onTap: () {
                         Get.to(() => ViewHotel(hotel: hotel));
+
+                        //print(hotel.imageUrl);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -382,13 +437,20 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             // ClipRRect(
                             //   borderRadius: BorderRadius.circular(15.0),
-                            //   child: Image.asset(
-                            //     hotel['image'].toString(),
-                            //     height: 125,
+                            //   child: Image.network(
+                            //     hotel.imageUrl.toString(),
+                            //     height: 200,
                             //     width: 150,
                             //     fit: BoxFit.cover,
                             //   ),
+                            //   // child: Image.asset(
+                            //   //   hotel['image'].toString(),
+                            //   //   height: 125,
+                            //   //   width: 150,
+                            //   //   fit: BoxFit.cover,
+                            //   // ),
                             // ),
+
                             const SizedBox(width: 10),
                             Expanded(
                               child: Column(

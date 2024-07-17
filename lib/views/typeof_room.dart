@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hotel_project/controllers/hotel_controller.dart';
 
+import 'package:hotel_project/services/stored_data.dart';
+
 class TypeOfRoom extends StatefulWidget {
   //final int hotelId;
   const TypeOfRoom({super.key});
@@ -10,12 +12,201 @@ class TypeOfRoom extends StatefulWidget {
   State<TypeOfRoom> createState() => _TypeOfRoomState();
 }
 
+void showAddHotelDialog(BuildContext context, HotelController hotelController) {
+  showDialog<String>(
+    context: context,
+    builder: (BuildContext context) => Dialog.fullscreen(
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            const Text('This is a fullscreen dialog.'),
+            Container(
+              width: 370.0,
+              height: 60.0,
+              margin: const EdgeInsets.all(5.0),
+              child: TextFormField(
+                controller: hotelController.roomImgUrlController,
+                decoration: InputDecoration(
+                  labelStyle: const TextStyle(
+                    color: Colors.black45,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  labelText: 'Image Url',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 370.0,
+              height: 60.0,
+              margin: const EdgeInsets.all(5.0),
+              child: TextFormField(
+                controller: hotelController.hotelRoomTypeController,
+                decoration: InputDecoration(
+                  labelStyle: const TextStyle(
+                    color: Colors.black45,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  labelText: 'Room Type',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 370.0,
+              height: 150.0,
+              margin: const EdgeInsets.all(5.0),
+              child: TextFormField(
+                controller: hotelController.hotelRoomDescController,
+                maxLines: 20,
+                decoration: InputDecoration(
+                  labelStyle: const TextStyle(
+                    color: Colors.black45,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  labelText: 'Room Description',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 370.0,
+              height: 60.0,
+              margin: const EdgeInsets.all(5.0),
+              child: TextFormField(
+                controller: hotelController.hotelRoomPrice,
+                maxLines: 3,
+                decoration: InputDecoration(
+                  labelStyle: const TextStyle(
+                    color: Colors.black45,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  labelText: 'Room Price',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 370.0,
+              height: 60.0,
+              margin: const EdgeInsets.all(5.0),
+              child: TextFormField(
+                controller: hotelController.noAdController,
+                decoration: InputDecoration(
+                  labelStyle: const TextStyle(
+                    color: Colors.black45,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  labelText: 'No. Adult',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 370.0,
+              height: 60.0,
+              margin: const EdgeInsets.all(5.0),
+              child: TextFormField(
+                controller: hotelController.noChController,
+                decoration: InputDecoration(
+                  labelStyle: const TextStyle(
+                    color: Colors.black45,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  labelText: 'No. Child',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 370.0,
+              height: 60.0,
+              margin: const EdgeInsets.all(5.0),
+              child: TextFormField(
+                controller: hotelController.noRoomController,
+                decoration: InputDecoration(
+                  labelStyle: const TextStyle(
+                    color: Colors.black45,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  labelText: 'No. Room',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SizedBox(
+                  width: 150.0,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      //Navigator.pop(context);
+                      hotelController.addRooms(1);
+                    },
+                    child: const Text('Add'),
+                  ),
+                ),
+                SizedBox(
+                  width: 150.0,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text('Close'),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+Widget _buildFloatingActionButton(BuildContext context, HotelController room) {
+  if (dataStored.read('role') == 'admin') {
+    return FloatingActionButton(
+      backgroundColor: const Color.fromARGB(255, 3, 138, 242),
+      tooltip: 'Add Hotel',
+      onPressed: () => showAddHotelDialog(context, room),
+      child: const Icon(Icons.add, color: Colors.white, size: 28),
+    );
+  } else {
+    return const SizedBox.shrink();
+  }
+}
+
 class _TypeOfRoomState extends State<TypeOfRoom> {
   HotelController hotelController = Get.put(HotelController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton:
+          _buildFloatingActionButton(context, hotelController),
       appBar: AppBar(
         title: const Row(
           children: [

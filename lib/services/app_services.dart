@@ -219,4 +219,56 @@ class ApiServices {
       print(reserveid);
     }
   }
+
+  //*add hotel
+  Future<void> addHotel(
+      String imgUrl,
+      String hotelName,
+      String hotelDesc,
+      String hotelAdd,
+      int userId,
+      String hotelEmail,
+      String hotelSPrice) async {
+    final response = await dio.post('/addhotel',
+        data: jsonEncode({
+          "imgurl": imgUrl,
+          "hotelname": hotelName,
+          "hoteldesc": hotelDesc,
+          "userid": userId,
+          "hotelemail": hotelEmail,
+          "hotelprice": hotelSPrice
+        }));
+
+    if (response.statusCode == 200) {
+      print(response.data);
+    } else {
+      print(hotelName);
+    }
+  }
+
+  //*add hotel
+  Future<void> addRoom(
+      int hotelId,
+      String imgUrl,
+      String hotelRoomType,
+      String hotelRoomDesc,
+      int hotelPrice,
+      int noRoom,
+      int noRoomAd,
+      int noRoomCh) async {
+    final response = await dio.post("/addroom",
+        data: jsonEncode({
+          "hotelid": hotelId,
+          "imgurl": imgUrl,
+          "roomtype": hotelRoomType,
+          "roomdesc": hotelRoomDesc,
+          "price": hotelPrice,
+          "noRoom": noRoom,
+          "noAdult": noRoomAd,
+          "noChild": noRoomCh
+        }));
+    if (response.statusCode == 200) {
+      print(response.data);
+    }
+  }
 }

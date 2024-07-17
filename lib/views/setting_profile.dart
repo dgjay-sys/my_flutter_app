@@ -131,8 +131,9 @@ class SettingProfile extends StatelessWidget {
           SizedBox(
             width: 500,
             child: TextButton(
-              onPressed: () => hotelController
-                  .showHotelReserved(int.parse(dataStored.read('userid'))),
+              onPressed: () => hotelController.showHotelReserved(
+                int.parse(dataStored.read('userid')),
+              ),
               style: TextButton.styleFrom(
                   padding: const EdgeInsets.all(16.0),
                   shape: const RoundedRectangleBorder(

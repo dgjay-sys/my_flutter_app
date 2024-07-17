@@ -10,6 +10,7 @@ String hotelToJson(Hotel data) => json.encode(data.toJson());
 
 class Hotel {
   int? hotelId;
+  String? imageUrl;
   String? hotelName;
   String? hotelDesc;
   String? hotelAddress;
@@ -20,6 +21,7 @@ class Hotel {
 
   Hotel({
     this.hotelId,
+    this.imageUrl,
     this.hotelName,
     this.hotelDesc,
     this.hotelAddress,
@@ -31,6 +33,7 @@ class Hotel {
 
   factory Hotel.fromJson(Map<String, dynamic> json) => Hotel(
         hotelId: json["hotel_id"],
+        imageUrl: json["image_url"],
         hotelName: json["hotel_name"],
         hotelDesc: json["hotel_desc"],
         hotelAddress: json["hotel_address"],
@@ -44,6 +47,7 @@ class Hotel {
 
   Map<String, dynamic> toJson() => {
         "hotel_id": hotelId,
+        "image_url": imageUrl,
         "hotel_name": hotelName,
         "hotel_desc": hotelDesc,
         "hotel_address": hotelAddress,

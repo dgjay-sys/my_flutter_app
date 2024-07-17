@@ -17,21 +17,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'hotel reservation',
-      initialRoute: '/landing',
+      initialRoute: '/home',
       getPages: AppPages.list,
-      // home: const HomePage(),
-      // routes: {
-      //   '/landing': (context) => const LandingPage(),
-      //   '/getstarted': (context) => const GetStarted(),
-      //   '/register': (context) => const RegisterPage(),
-      //   '/login': (context) => const LoginPage(),
-      //   '/profile': (context) => const SettingProfile(),
-      //   '/home': (context) => const HomePage(),
-      //   '/forgot': (context) => const ForgotPassword(),
-      //   '/viewinfo': (context) => const ViewHotel(),
-      //   '/booknow': (context) => const BookHotel(),
-      //   '/roomtype': (context) => const TypeOfRoom(),
-      // },
     );
   }
 }

@@ -10,6 +10,7 @@ class DataStorage {
     box.write('username', user.username.toString());
     box.write('lname', user.lname.toString());
     box.write('userid', user.userId.toString());
+    box.write('role', user.role.toString());
   }
 
   void eraseStorage() {
